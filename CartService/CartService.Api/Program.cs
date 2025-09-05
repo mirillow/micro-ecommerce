@@ -12,7 +12,7 @@ builder.Services.AddOpenApi();
 
 
 builder.Services.AddDbContext<CartDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseInMemoryDatabase("CartDb"));
 
 builder.Services.AddAutoMapper(typeof(CartMappingProfile));
 builder.Services.AddScoped<ICartRepository, CartRepository>();
@@ -25,11 +25,10 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 app.MapGet("/", context =>
 {
@@ -38,10 +37,9 @@ app.MapGet("/", context =>
 });
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+
+app.MapOpenApi();
+
 
 
 app.UseHttpsRedirection();
