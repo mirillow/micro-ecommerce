@@ -6,10 +6,12 @@ on:
       - main
     paths:
       - 'CartService/**'
+    workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment: dev
 
     steps:
     - name: Checkout code
