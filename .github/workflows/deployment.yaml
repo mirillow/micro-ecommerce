@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'CartService/**
+      - 'CartService/**'
   workflow_dispatch:
     inputs:
       environment:
