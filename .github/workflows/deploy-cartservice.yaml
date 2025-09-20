@@ -26,9 +26,9 @@ jobs:
     - name: Build and Push Docker image
       uses: azure/docker-login@v1
       with:
-        login-server: ${{ secrets.ACR_NAME }}.azurecr.io
-        username: ${{ secrets.AZURE_CREDENTIALS.clientId }}
-        password: ${{ secrets.AZURE_CREDENTIALS.clientSecret }}
+            login-server: ${{ secrets.ACR_NAME }}
+            username: ${{ secrets.REGISTRY_USERNAME }}
+            password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
         docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/cart-service:${{ github.sha }}  -f ./CartService/CartService.Api/Dockerfile  ./CartService
         docker push ${{ secrets.ACR_NAME }}.azurecr.io/cart-service:${{ github.sha }}
