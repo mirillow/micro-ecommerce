@@ -5,8 +5,12 @@ on:
     branches:
       - main
     paths:
-      - 'CartService/**'
-    workflow_dispatch:
+      - 'CartService/**
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        default: 'dev'
 
 jobs:
   build-and-deploy:
